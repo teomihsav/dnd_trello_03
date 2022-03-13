@@ -1,11 +1,9 @@
 
 
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from "redux-devtools-extension"
+import { createStore, compose } from 'redux'
 
 
-const counterReducer = (state = {
+const trelloReducer = (state = {
     tasks: {
         'task-1': { id: 'task-1', content: 'Test One' },
         'task-2': { id: 'task-2', content: 'Test Two' },
@@ -86,39 +84,12 @@ const counterReducer = (state = {
     return state
 }
 
-// const store = createStore(counterReducer)
-const middleware = [thunk]
-
 const store = createStore(
     // @ts-ignore
-    counterReducer,
+    trelloReducer,
     compose(
-        applyMiddleware(...middleware),
         // @ts-ignore
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
 export default store
-
-
-// import { combineReducers, createStore, Reducer } from 'redux'
-
-// const counterReducer = (state = { counter: 10 }, action: any) => {
-//     if (action.type === 'increment') {
-//         return {
-//             counter: state.counter + 1
-//         }
-//     }
-//     if (action.type === 'decrement') {
-//         return {
-//             counter: state.counter - 1
-//         }
-//     }
-//     return state
-// }
-// const reducers: Reducer = combineReducers({
-//     count: counterReducer,
-// });
-// const store = createStore(reducers)
-
-// export default store

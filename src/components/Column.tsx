@@ -17,21 +17,12 @@ type Props = {
         title: string,
     },
     index: number,
-    // tasks: {
-    //     id: string,
-    //     content:string,
-    // },
     tasks: any | any,
-
-    // handleCards: any,
-    // handleEditCard: any,
 }
 
 const Column: React.FC<Props> = (props) => {
 
-
     return <Draggable draggableId={props.column.id} index={props.index}>
-
         {provided => (
             <Container
                 {...provided.draggableProps}
@@ -61,7 +52,6 @@ const Column: React.FC<Props> = (props) => {
                                         index={index}
 
                                     />
-
                                 )
                             }
                             {provided.placeholder}

@@ -8,12 +8,8 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import EditInput from './EditInput'
 
-import { RootStateOrAny, useSelector } from "react-redux"
-
 
 const Task = (props: { task: { id: string; content: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }; index: number }) => {
-
-  const state = useSelector((state: RootStateOrAny) => state)
 
   return <Draggable draggableId={props.task.id} index={props.index}>
     {provided => (
