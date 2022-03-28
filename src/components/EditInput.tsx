@@ -93,12 +93,25 @@ const EditInput = (props: { [x: string]: any; text: any }) => {
             payload: text
         })
     }
+
     const handleTyping = (event: { target: { value: any } }) => {
         setName(event.target.value)
     }
     const handleExit = (event: { key: string; preventDefault: () => void; stopPropagation: () => void }) => {
-        if (event.key === 'Enter' || event.key === 'Escape') {
-            if ( name === '' || name === undefined || name.trim() === '' ) {
+
+        if (event.key === 'Escape') {
+            setToggle(true)
+            // setName('')
+            if (props.type === 'Edit Bucket') {
+                editColumn()
+            }
+            if (props.type === 'Edit Card') {
+                editTask()
+            }
+        }
+
+        if (event.key === 'Enter') {
+            if (name === '' || name === undefined || name.trim() === '') {
                 showError('Please type a description...')
             } else {
                 setToggle(true)
@@ -125,7 +138,6 @@ const EditInput = (props: { [x: string]: any; text: any }) => {
                     style={{ padding: '5px', display: 'flex', alignSelf: 'center' }}
                     onClick={() => { setToggle(false) }}
                 >
-
                     <span><AiOutlineEdit /> </span>
                     <span style={{ marginLeft: '10px' }}>{name}</span>
 
@@ -138,6 +150,7 @@ const EditInput = (props: { [x: string]: any; text: any }) => {
                         onChange={handleTyping}
                         onKeyDown={handleExit}
                         onFocus={() => setPlaceholder('')}
+                        // value={name}
                     />
                 </div>
 
