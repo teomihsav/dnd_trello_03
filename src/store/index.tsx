@@ -5,23 +5,23 @@ import { createStore, compose } from 'redux'
 
 const trelloReducer = (state = {
     tasks: {
-        'task-1': { id: 'task-1', content: 'Test One' },
-        'task-2': { id: 'task-2', content: 'Test Two' },
+        'task-1': { id: 'task-1', content: 'Drag or Edit Task 1' },
+        'task-2': { id: 'task-2', content: 'Drag or Edit Task 2' },
     },
     columns: {
         '1': {
             id: '1',
-            title: 'To do',
+            title: 'Drag or Edit Column 1',
             taskIds: ['task-1', 'task-2'],
         },
         '2': {
             id: '2',
-            title: 'Second',
+            title: 'Drag or Edit Column 2',
             taskIds: [],
         },
         '3': {
             id: '3',
-            title: 'Third',
+            title: 'Drag or Edit Column 3',
             taskIds: [],
         },
     },
@@ -34,7 +34,7 @@ const trelloReducer = (state = {
     if (action.type === 'ALL') {
         return { ...action.payload }
     }
-    
+
     if (action.type === 'ADD_COLUMN_NUMBER') {
         return {
             ...state,
@@ -78,7 +78,7 @@ const trelloReducer = (state = {
         return {
             ...state,
             error: action.payload
-            
+
         }
     }
     return state

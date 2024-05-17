@@ -14,12 +14,12 @@ const Task = (props: { task: { id: string; content: boolean | React.ReactChild |
   return <Draggable draggableId={props.task.id} index={props.index}>
     {provided => (
       <Container
-      {...provided.draggableProps}
-      {...provided.dragHandleProps}
-      ref={provided.innerRef}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
       >
-      <EditInput taskId={props.task.id} text={props.task.content} type={'Edit Card'} />
-        
+        <EditInput taskId={props.task.id} text={props.task.content} type={'Edit Card'} show />
+
       </Container>
     )}
   </Draggable>
@@ -33,6 +33,7 @@ const Container = styled.div`
     padding: 8px;
     margin-bottom: 8px;
     border: 1px solid lightsteelblue;
-    border-radius: 5px;
-    background-color: white
+    border-radius: 10px;
+    background-color: black;
+    color: white
 `

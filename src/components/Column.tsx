@@ -30,10 +30,10 @@ const Column: React.FC<Props> = (props) => {
             >
                 <Title {...provided.dragHandleProps} >
 
-                    <EditInput text={props.column.title} type={'Edit Bucket'} columnId={props.column.id} />
+                    <EditInput text={props.column.title} type={'Edit Column Name'} columnId={props.column.id} show />
                     <hr style={{ backgroundColor: 'lightsteelblue' }} />
 
-                    <EditInput text={undefined} type={'Add Card'} columnId={props.column.id} />
+                    <EditInput text={undefined} type={'Add Task'} columnId={props.column.id} />
 
                 </Title>
                 <Droppable droppableId={props.column.id} type='task'>
@@ -45,14 +45,13 @@ const Column: React.FC<Props> = (props) => {
                             {...provided.droppableProps}
                         >
                             {
-                                props.tasks && props.tasks.map((task: any, index: any) =>
-                                    task && <Task
+                                props.tasks && props.tasks.map((task: any, index: any) => {
+                                    return task && <Task
                                         key={task.id && task.id}
                                         task={task}
                                         index={index}
-
                                     />
-                                )
+                                })
                             }
                             {provided.placeholder}
                         </TaskList >
@@ -67,11 +66,12 @@ export default Column
 
 
 const Container = styled.div`
-    background-color: white;
+    background-color: black;
+    color: white;
     font-family: sans-serif;
-    margin: 8px;
+    margin: 10px;
     border: 1px solid lightsteelblue;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 220px;
     display: flex;
     flex-direction: column;

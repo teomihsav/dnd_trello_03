@@ -1,7 +1,7 @@
 
 
 
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 import Column from './components/Column'
@@ -23,14 +23,14 @@ const Container = styled.div`
   display: flex;
   margin: 8px;
   border: 1px solid lightsteelblue;
-  border-radius: 5px;
+  border-radius: 10px;
 `
 const Main = styled.div`
   font-family: sans-serif;
   margin: 20px;
   padding: 50px;
   border: 1px solid lightsteelblue;
-  border-radius: 5px;
+  border-radius: 10px;
 `
 
 // @ts-ignore
@@ -135,7 +135,7 @@ const App: React.FC = () => {
   return <Main>
     <EditInput type={'Create Bucket'} text={undefined} />
 
-    <span style={{fontSize: '12px', color: 'lightcoral'}}>{state.error}</span>
+    <span style={{ fontSize: '12px', color: 'lightcoral' }}>{state.error}</span>
 
     <DragDropContext onDragEnd={onDragEnd} >
       <Droppable
