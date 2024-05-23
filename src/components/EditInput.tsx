@@ -32,6 +32,7 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
                     id: String(state.numColumn),
                     title: name,
                     taskIds: [],
+                    columnId
                 },
             },
         })
@@ -62,6 +63,7 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
                 ['task-' + state.numTask]: {
                     id: String('task-' + state.numTask),
                     content: name,
+                    column: columnId
                 }
             }
         })
@@ -87,7 +89,7 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
             }
         })
         const filteredTasks = state.columns[columnId].taskIds.filter((el: any) => el !== taskId)
-        console.log('Result: ', filteredTasks)
+        // console.log('Result: ', filteredTasks)
 
         dispatch({
             type: 'DELETE_TASK_TO_COLUMN',
@@ -125,6 +127,7 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
                 [taskId]: {
                     id: String([taskId]),
                     content: name,
+                    columnId: columnId
                 }
             }
         })

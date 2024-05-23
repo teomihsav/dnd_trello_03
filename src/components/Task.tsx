@@ -1,23 +1,40 @@
-
-
-import React from 'react'
-
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-
 import { Draggable } from 'react-beautiful-dnd'
-
 import EditInput from './EditInput'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 
 
-const Task = (props: { task: { id: string; content: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }; index: number, columnId: string }) => {
-  return <Draggable draggableId={props.task.id} index={props.index}>
+const Task = ({ task: { id, content }, index, columnId }: any) => {
+
+  const dispatch = useDispatch()
+  const state = useSelector((state: RootStateOrAny) => state)
+
+  useEffect(() => {
+    editTask()
+  }, [])
+
+  const editTask = () => {
+    dispatch({
+      type: 'EDIT_TASK',
+      payload: {
+        [id]: {
+          ...state.tasks[id],
+          id: String([id]),
+          columnId: columnId
+        }
+      }
+    })
+  }
+
+  return <Draggable draggableId={id} index={index}>
     {provided => (
       <Container
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         ref={provided.innerRef}
       >
-        <EditInput taskId={props.task.id} text={props.task.content} type={'Edit Card'} columnId={props.columnId} show />
+        <EditInput taskId={id} text={content} type={'Edit Card'} columnId={columnId} show />
 
       </Container>
     )}

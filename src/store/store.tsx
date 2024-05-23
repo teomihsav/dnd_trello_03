@@ -5,8 +5,8 @@ import { createStore, compose } from 'redux'
 
 const trelloReducer = (state = {
     tasks: {
-        'task-1': { id: 'task-1', content: 'Drag or Edit Task 1' },
-        'task-2': { id: 'task-2', content: 'Drag or Edit Task 2' },
+        'task-1': { id: 'task-1', content: 'Drag or Edit Task 1', columnId: '1' },
+        'task-2': { id: 'task-2', content: 'Drag or Edit Task 2', columnId: '1' },
     },
     columns: {
         '1': {
@@ -77,10 +77,7 @@ const trelloReducer = (state = {
         }
     }
     if (action.type === 'DELETE_COLUMN') {
-        console.log('Payload: ', action.payload, 'ColumnId: ', action.payload.columnId, 'Columns: ', action.payload.columns)
-
-        // delete state.columns[action.payload.columnId]
-        // const { action.payload.columnId, ...rest } = state.columns
+        // console.log('Payload: ', action.payload, 'ColumnId: ', action.payload.columnId, 'Columns: ', action.payload.columns)
         return {
             ...state,
             columns: action.payload.columns,
