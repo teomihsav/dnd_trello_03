@@ -77,11 +77,12 @@ const trelloReducer = (state = {
         }
     }
     if (action.type === 'DELETE_COLUMN') {
-        // console.log('Payload: ', action.payload, 'ColumnId: ', action.payload.columnId, 'Columns: ', action.payload.columns)
+        console.log('Payload: ', 'Tasks: ', action.payload)
         return {
             ...state,
             columns: action.payload.columns,
             columnOrder: action.payload.columnOrder,
+            tasks: action.payload.tasks
         }
     }
     if (action.type === 'ADD_TASK_TO_COLUMN') {

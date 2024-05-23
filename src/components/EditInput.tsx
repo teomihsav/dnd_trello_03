@@ -63,7 +63,7 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
                 ['task-' + state.numTask]: {
                     id: String('task-' + state.numTask),
                     content: name,
-                    column: columnId
+                    columnId
                 }
             }
         })
@@ -110,12 +110,23 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
 
         let columnOrder = state.columnOrder.filter((el: any) => el !== columnId)
 
+        const returnTasks = (columnId: string, tasks: {}) => {
+            const res = Object.values(tasks).map((el: any) => el.columnId !== columnId && { [el.id]: el })
+            // console.log('Tasks !: ', res)
+
+            return res
+        }
+
+        const tasks = returnTasks(columnId, state.tasks)
+        console.log('Tasks !: ', Object.assign({}, ...tasks))
+
         dispatch({
             type: 'DELETE_COLUMN',
             payload: {
                 columns: rest,
                 columnOrder,
-                columnId: columnId
+                columnId: columnId,
+                tasks: Object.assign({}, ...tasks)
             },
         })
     }

@@ -1,15 +1,7 @@
-
-
-
-
 import styled from 'styled-components'
-
 import Task from './Task'
-
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-
 import EditInput from './EditInput'
-
 
 type Props = {
     column: {
