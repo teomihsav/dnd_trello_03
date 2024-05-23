@@ -13,7 +13,7 @@ import styled from 'styled-components'
 import './index.css'
 
 import { Provider } from 'react-redux'
-import store from './store/index'
+import store from './store/store'
 
 import { RootStateOrAny, useSelector, useDispatch } from "react-redux"
 
@@ -132,8 +132,10 @@ const App: React.FC = () => {
 
   }
 
+  console.log('State: ', state)
+
   return <Main>
-    <EditInput type={'Create Bucket'} text={undefined} />
+    <EditInput type={'Create Bucket'} text={'Create Column'} />
 
     <span style={{ fontSize: '12px', color: 'lightcoral' }}>{state.error}</span>
 

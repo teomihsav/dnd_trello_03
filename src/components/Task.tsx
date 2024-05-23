@@ -9,8 +9,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import EditInput from './EditInput'
 
 
-const Task = (props: { task: { id: string; content: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }; index: number }) => {
-
+const Task = (props: { task: { id: string; content: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }; index: number, columnId: string }) => {
   return <Draggable draggableId={props.task.id} index={props.index}>
     {provided => (
       <Container
@@ -18,7 +17,7 @@ const Task = (props: { task: { id: string; content: boolean | React.ReactChild |
         {...provided.dragHandleProps}
         ref={provided.innerRef}
       >
-        <EditInput taskId={props.task.id} text={props.task.content} type={'Edit Card'} show />
+        <EditInput taskId={props.task.id} text={props.task.content} type={'Edit Card'} columnId={props.columnId} show />
 
       </Container>
     )}

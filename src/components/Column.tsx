@@ -30,10 +30,10 @@ const Column: React.FC<Props> = (props) => {
             >
                 <Title {...provided.dragHandleProps} >
 
-                    <EditInput text={props.column.title} type={'Edit Column Name'} columnId={props.column.id} show />
+                    <EditInput text={props.column.title} type={'Edit Column Name'} columnId={props.column.id} show column />
                     <hr style={{ backgroundColor: 'lightsteelblue' }} />
 
-                    <EditInput text={undefined} type={'Add Task'} columnId={props.column.id} />
+                    <EditInput text={'Add Task'} type={'Add Task'} columnId={props.column.id} />
 
                 </Title>
                 <Droppable droppableId={props.column.id} type='task'>
@@ -50,6 +50,7 @@ const Column: React.FC<Props> = (props) => {
                                         key={task.id && task.id}
                                         task={task}
                                         index={index}
+                                        columnId={props.column.id}
                                     />
                                 })
                             }

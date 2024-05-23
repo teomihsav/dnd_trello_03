@@ -56,12 +56,44 @@ const trelloReducer = (state = {
             error: ''
         }
     }
+
+    if (action.type === 'DELETE_TASK') {
+        // console.log('Payload: ', Object.keys(action.payload)[0])
+        // console.log('Payload: ', action.payload)
+        // delete state.tasks[Object.keys(action.payload)[0]]
+        // @ts-ignore
+        delete state.tasks[action.payload.id]
+
+        return {
+            ...state,
+            // tasks: { ...state.tasks, ...action.payload },
+            // tasks: {}
+        }
+    }
+    if (action.type === 'DELETE_TASK_TO_COLUMN') {
+        return {
+            ...state,
+            columns: { ...state.columns, ...action.payload },
+        }
+    }
+    if (action.type === 'DELETE_COLUMN') {
+        console.log('Payload: ', action.payload, 'ColumnId: ', action.payload.columnId, 'Columns: ', action.payload.columns)
+
+        // delete state.columns[action.payload.columnId]
+        // const { action.payload.columnId, ...rest } = state.columns
+        return {
+            ...state,
+            columns: action.payload.columns,
+            columnOrder: action.payload.columnOrder,
+        }
+    }
     if (action.type === 'ADD_TASK_TO_COLUMN') {
         return {
             ...state,
             columns: { ...state.columns, ...action.payload },
         }
     }
+
     if (action.type === 'EDIT_TASK') {
         return {
             ...state,
