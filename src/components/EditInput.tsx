@@ -21,18 +21,20 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
 
     const createColumn = () => {
         state.numColumn++
+        const highNum = Math.max(...state.columnOrder)
+        console.log('Column Number: ', state.columnOrder)
         dispatch({
             type: 'ADD_COLUMN_NUMBER',
-            payload: [...state.columnOrder, String(state.numColumn)]
+            payload: [...state.columnOrder, String(highNum + 1)]
         })
         dispatch({
             type: 'ADD_COLUMN',
             payload: {
-                [state.numColumn]: {
-                    id: String(state.numColumn),
+                [highNum + 1]: {
+                    id: String(highNum + 1),
                     title: name,
                     taskIds: [],
-                    columnId
+                    // columnId
                 },
             },
         })
@@ -118,8 +120,12 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
         }
 
         const tasks = returnTasks(columnId, state.tasks)
-        console.log('Tasks !: ', Object.assign({}, ...tasks))
-
+        // console.log('Tasks !: ', Object.assign({}, ...tasks))
+        state.numColumn--
+        dispatch({
+            type: 'DELETE_COLUMN_NUMBER',
+            payload: [...state.columnOrder, String(state.numColumn)]
+        })
         dispatch({
             type: 'DELETE_COLUMN',
             payload: {

@@ -76,8 +76,14 @@ const trelloReducer = (state = {
             columns: { ...state.columns, ...action.payload },
         }
     }
+    if (action.type === 'DELETE_COLUMN_NUMBER') {
+        return {
+            ...state,
+            columnOrder: action.payload
+        }
+    }
     if (action.type === 'DELETE_COLUMN') {
-        console.log('Payload: ', 'Tasks: ', action.payload)
+        // console.log('Payload: ', 'Tasks: ', action.payload)
         return {
             ...state,
             columns: action.payload.columns,
