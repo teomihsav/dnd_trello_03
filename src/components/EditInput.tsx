@@ -21,8 +21,8 @@ const EditInput = ({ text, type, taskId, show, columnId, column }: any) => {
 
     const createColumn = () => {
         state.numColumn++
-        const highNum = Math.max(...state.columnOrder)
-        console.log('Column Number: ', state.columnOrder)
+        const highNum = state.columnOrder.length === 0 ? 0 : Math.max(...state.columnOrder)
+        console.log('Column Number: ', highNum, state.columnOrder)
         dispatch({
             type: 'ADD_COLUMN_NUMBER',
             payload: [...state.columnOrder, String(highNum + 1)]
